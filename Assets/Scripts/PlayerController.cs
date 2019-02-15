@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     public Vector2 JumpForce;
     public bool Grounded = true;
 
-
+    public GameObject GameOverText;
 
 	// Use this for initialization
 	void Start () {
@@ -24,13 +24,36 @@ public class PlayerController : MonoBehaviour {
             Grounded = false;
         }
 
+        if (transform.position.y < -10)
+        {
+            GameOver();
+        }
+
 	}
+
+    private void GameOver()
+    {
+        GameOverText.SetActive(true);
+        Debug.Log("Game Over");
+
+        Invoke("RestartGame", 5);
+    }
+
+    void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             Grounded = true;
+        }
+
+        if(collision.gameObject.tag == "Obstacale")
+        {
+            GameOver();
         }
     }
 

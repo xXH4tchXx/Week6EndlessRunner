@@ -5,16 +5,26 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour {
 
     public List<GameObject> Prefabs;
-
-
+    public float MaxSpawnDelay = 2f; //This should be the amount of time delay in seconds 
 
     // Use this for initialization
-    void Start () {
-		
+    void Start ()
+    {
+        if (Prefabs.Count > 0)
+        {
+            StartCoroutine(SpawnObjects());
+        }
+        else
+        {
+            Debug.LogWarning("There Are No Objects To Spawn");
+        }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    IEnumerator SpawnObjects()
+    {
+        yield return new WaitForSeconds(Random.Range(0.75f, MaxSpawnDelay));
+
+        Instantiate(Prefabs[Random.Range(0, Prefabs.Count)], transform.position, Quaternion.identity);
+        StartCoroutine(SpawnObjects());
+    }
 }
