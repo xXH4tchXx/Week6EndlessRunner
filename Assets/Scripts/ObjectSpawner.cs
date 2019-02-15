@@ -22,7 +22,7 @@ public class ObjectSpawner : MonoBehaviour {
 
     IEnumerator SpawnObjects()
     {
-        yield return new WaitForSeconds(Random.Range(0.75f, MaxSpawnDelay));
+        yield return new WaitForSeconds(Random.Range(0.5f, MaxSpawnDelay));
 
         Instantiate(Prefabs[Random.Range(0, Prefabs.Count)], transform.position, Quaternion.identity);
         StartCoroutine(SpawnObjects());
