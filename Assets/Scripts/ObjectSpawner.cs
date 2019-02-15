@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public List<GameObject> Prefabs;
+
+
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
