@@ -6,7 +6,8 @@ public class Obstacale : MonoBehaviour {
 
     private Rigidbody2D _rigid;
     public float MoveSpeed;
-    public bool MoveRight; //Set this to false to move to the left and visa versa
+    [HideInInspector]public bool _moveRight; //Set this to false to move to the left and visa versa
+    
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class Obstacale : MonoBehaviour {
 
     void Update ()
     {
-        if (MoveRight)
+        if (_moveRight == true)
         {
             _rigid.MovePosition(_rigid.position + new Vector2(MoveSpeed, 0));
             if (_rigid.position.x > 10)
